@@ -1,0 +1,5 @@
+{
+  "name": "Card News Generator AI",
+  "description": "An AI-powered application that generates card news content from press releases. Users can specify the number of cards, choose a tone, and receive catchy title suggestions.",
+  "requestFramePermissions": []
+}
