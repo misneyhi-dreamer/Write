@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { Header } from './components/Header';
 import { InputForm } from './components/InputForm';
@@ -6,6 +5,7 @@ import { ResultsDisplay } from './components/ResultsDisplay';
 import { generateCardNewsContent } from './services/geminiService';
 import { Tone, GeneratedContent } from './types';
 import { PromotionalBanner } from './components/PromotionalBanner';
+import { Footer } from './components/Footer';
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -37,13 +37,19 @@ const App: React.FC = () => {
     }
   }, []);
 
+  const handleReset = useCallback(() => {
+    setIsLoading(false);
+    setError(null);
+    setGeneratedContent(null);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col">
       <Header />
       <PromotionalBanner />
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 flex-grow">
         <div className="max-w-4xl mx-auto">
-          <InputForm onGenerate={handleGenerate} isLoading={isLoading} />
+          <InputForm onGenerate={handleGenerate} isLoading={isLoading} onReset={handleReset} />
           <div className="mt-12">
             <ResultsDisplay
               isLoading={isLoading}
@@ -53,6 +59,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

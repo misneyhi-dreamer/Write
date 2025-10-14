@@ -4,9 +4,10 @@ import { Tone } from '../types';
 interface InputFormProps {
   onGenerate: (pressReleaseText: string, cardCount: number, tone: Tone) => void;
   isLoading: boolean;
+  onReset: () => void;
 }
 
-export const InputForm: React.FC<InputFormProps> = ({ onGenerate, isLoading }) => {
+export const InputForm: React.FC<InputFormProps> = ({ onGenerate, isLoading, onReset }) => {
   const [pressReleaseText, setPressReleaseText] = useState<string>('');
   const [cardCount, setCardCount] = useState<number>(4);
   const [tone, setTone] = useState<Tone>(Tone.Formal);
@@ -14,6 +15,13 @@ export const InputForm: React.FC<InputFormProps> = ({ onGenerate, isLoading }) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onGenerate(pressReleaseText, cardCount, tone);
+  };
+  
+  const handleLocalReset = () => {
+    setPressReleaseText('');
+    setCardCount(4);
+    setTone(Tone.Formal);
+    onReset();
   };
 
   return (
@@ -72,11 +80,11 @@ export const InputForm: React.FC<InputFormProps> = ({ onGenerate, isLoading }) =
         </div>
       </div>
 
-      <div>
+      <div className="flex flex-col sm:flex-row-reverse gap-4">
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full flex justify-center items-center bg-indigo-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed transition duration-200 text-lg shadow-sm"
+          className="w-full flex-grow flex justify-center items-center bg-indigo-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed transition duration-200 text-lg shadow-sm"
         >
           {isLoading ? (
             <>
@@ -89,6 +97,14 @@ export const InputForm: React.FC<InputFormProps> = ({ onGenerate, isLoading }) =
           ) : (
             '카드뉴스 원고 생성하기'
           )}
+        </button>
+        <button
+            type="button"
+            onClick={handleLocalReset}
+            disabled={isLoading}
+            className="w-full sm:w-auto bg-slate-200 text-slate-700 font-bold py-4 px-6 rounded-lg hover:bg-slate-300 disabled:bg-slate-100 disabled:cursor-not-allowed transition duration-200 text-lg shadow-sm"
+          >
+            초기화
         </button>
       </div>
     </form>
