@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GeneratedContent } from '../types';
 import { Spinner } from './Spinner';
@@ -38,8 +37,8 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ isLoading, error
         <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-16 w-16 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        <h3 className="mt-4 text-xl font-semibold text-slate-700">결과를 기다리는 중</h3>
-        <p className="mt-1 text-slate-500">위 양식을 작성하고 '생성하기' 버튼을 누르면 AI가 카드뉴스 원고를 만들어 드립니다.</p>
+        <h3 className="mt-4 text-xl font-semibold text-slate-700">AI 카드뉴스 원고 생성 결과</h3>
+        <p className="mt-1 text-slate-500">보도자료를 입력하고 '생성하기' 버튼을 누르면, AI가 분석하여 이곳에 카드뉴스 원고와 추천 제목을 표시합니다.</p>
       </div>
     );
   }
