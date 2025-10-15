@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with your full domain
+Sitemap: https://cardnews.ai.kr/sitemap.xml
